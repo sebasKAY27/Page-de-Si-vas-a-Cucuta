@@ -16,7 +16,7 @@ menuToggle.addEventListener('click', () => {
 });
 
 // Close menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
+document.querySelectorAll('.nav-links-new a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         const icon = menuToggle.querySelector('i');
@@ -27,13 +27,13 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // Navbar Scroll Effect
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-        navbar.style.padding = '0.5rem 0';
+        navbar.style.background = '#000000';
+        navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.5)';
+        navbar.style.padding = '0.8rem 0';
     } else {
-        navbar.style.background = 'var(--glass)';
-        navbar.style.boxShadow = 'none';
-        navbar.style.padding = '1rem 0';
+        navbar.style.background = '#000000';
+        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
+        navbar.style.padding = '1.2rem 0';
     }
 });
 

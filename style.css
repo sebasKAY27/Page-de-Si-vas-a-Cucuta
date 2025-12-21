@@ -605,48 +605,127 @@ footer {
 /* ===== NEW PAGE STYLES ===== */
 
 /* Page Headers */
+/* Page Headers - Interactive */
 .page-header {
     position: relative;
-    height: 50vh;
+    height: 60vh;
+    /* Increased height slightly */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
-    background-image: url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=2664&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
     margin-top: 80px;
+    overflow: hidden;
+    /* Required for zoom effect */
 }
 
-.gastro-header {
+/* Background Image Container */
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transform: scale(1);
+    transition: transform 10s ease;
+    animation: slowZoom 20s infinite alternate;
+}
+
+/* Hover Effect */
+.page-header:hover::before {
+    transform: scale(1.1);
+    animation-play-state: paused;
+}
+
+/* Keyframes for Automatic Zoom */
+@keyframes slowZoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+/* Default Background */
+.page-header.default-header::before {
+    background-image: url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=2664&auto=format&fit=crop');
+}
+
+/* Specific Page Backgrounds */
+.gastro-header::before {
     background-image: url('https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=2000&auto=format&fit=crop');
 }
 
-.cultura-header {
+.cultura-header::before {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Templo_Hist%C3%B3rico_C%C3%BAcuta.jpg/1024px-Templo_Hist%C3%B3rico_C%C3%BAcuta.jpg');
 }
 
-.eventos-header {
+.eventos-header::before {
     background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2670&auto=format&fit=crop');
 }
 
-.contacto-header {
+.contacto-header::before {
     background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2674&auto=format&fit=crop');
 }
 
-.page-header h1 {
-    font-size: 4rem;
-    color: white;
-    margin-bottom: 1rem;
+.hoteles-header::before {
+    background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2670&auto=format&fit=crop');
+}
+
+.destinos-header::before {
+    background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2670&auto=format&fit=crop');
+}
+
+.servicios-header::before {
+    background-image: url('https://images.unsplash.com/photo-1517840901100-8179e982acb7?q=80&w=2670&auto=format&fit=crop');
+}
+
+.guia-comercial-header::before {
+    background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2670&auto=format&fit=crop');
+}
+
+/* Overlay Upgrade */
+.page-header .overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 1;
+}
+
+/* Content Z-Index & Animation */
+.page-header .container {
     position: relative;
     z-index: 2;
 }
 
+.page-header h1 {
+    font-size: 4.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards 0.3s;
+}
+
 .page-header p {
-    font-size: 1.3rem;
-    position: relative;
-    z-index: 2;
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    animation: fadeUp 1s ease forwards 0.6s;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Utility Classes */
@@ -3340,5 +3419,1544 @@ footer {
     .cta-box h2 {
         font-size: 2rem;
     }
-} 
- 
+}
+
+/* ===== NEW HOMEPAGE DESIGN - SI VAS A CÚCUTA ===== */
+
+/* Top Bar */
+.top-bar {
+    background: var(--secondary);
+    color: white;
+    padding: 0.8rem 0;
+    font-size: 0.85rem;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-left,
+.top-bar-right {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.top-bar span,
+.top-bar a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.top-bar i {
+    color: var(--primary);
+}
+
+/* New Navbar */
+.navbar-new {
+    background: #000000;
+    padding: 1.2rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.nav-container-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-new {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.7rem;
+    background: transparent;
+    border-radius: 12px;
+    border: 3px solid white;
+    transition: var(--transition);
+}
+
+.logo-new:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Adjust padding for the menu links so they don't overlap the larger logo */
+.nav-links-new {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links-new a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: var(--transition);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links-new a:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.nav-links-new a.active {
+    color: var(--primary);
+}
+
+.nav-links-new a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* New Hero */
+.hero-new {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg-new {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('IMAGENES/Cucutica.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+.overlay-new {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    z-index: -1;
+}
+
+.hero-content-new {
+    text-align: center;
+    color: white;
+    max-width: 900px;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.hero-content-new h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.text-highlight {
+    color: var(--primary);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    opacity: 0.95;
+}
+
+/* Search Box */
+.search-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 50px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-input-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem 1rem;
+    border-right: 1px solid var(--border);
+}
+
+.search-input-group:last-of-type {
+    border-right: none;
+}
+
+.search-input-group i {
+    color: var(--primary);
+    font-size: 1.3rem;
+}
+
+.search-input-group input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
+    color: var(--text);
+}
+
+.search-input-group input::placeholder {
+    color: var(--text-light);
+}
+
+.search-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.search-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Quick Links */
+.quick-links-section {
+    padding: 4rem 0;
+    background: white;
+    margin-top: -3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+}
+
+.quick-link-card {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-decoration: none;
+    color: var(--text);
+}
+
+.quick-link-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.quick-link-card i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.quick-link-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary);
+}
+
+.quick-link-card p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* Section Header New */
+.section-header-new {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header-new h2 {
+    font-size: 3rem;
+    margin-bottom: 0.8rem;
+    color: var(--secondary);
+}
+
+.section-header-new p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+/* Featured Section */
+.featured-section {
+    background: var(--light);
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+    grid-auto-rows: 400px;
+}
+
+.featured-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.featured-card.large-card {
+    grid-row: span 2;
+}
+
+.featured-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.featured-card:hover img {
+    transform: scale(1.1);
+}
+
+.featured-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    color: white;
+}
+
+.featured-badge {
+    display: inline-block;
+    background: var(--primary);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.featured-overlay h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.featured-overlay p {
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.btn-white-outline {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border: 2px solid white;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-white-outline:hover {
+    background: white;
+    color: var(--primary);
+}
+
+.btn-white-outline-small {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid white;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.btn-white-outline-small:hover {
+    background: white;
+    color: var(--primary);
+}
+
+/* Gastro Preview */
+.gastro-preview-section {
+    background: white;
+}
+
+.gastro-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.gastro-preview-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.gastro-preview-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.gastro-preview-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.gastro-preview-content {
+    padding: 1.5rem;
+}
+
+.gastro-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.gastro-preview-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.gastro-preview-content p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.gastro-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.gastro-meta i {
+    color: var(--accent);
+}
+
+.btn-primary-small {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background: var(--primary);
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.btn-primary-small:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Hotels Preview */
+.hotels-preview-section {
+    background: linear-gradient(135deg, var(--secondary), #1a1a1a);
+}
+
+.hotels-preview-section .section-header-new h2,
+.hotels-preview-section .section-header-new p {
+    color: white;
+}
+
+.hotels-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.hotel-preview-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.hotel-preview-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.hotel-preview-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.hotel-preview-content {
+    padding: 1.5rem;
+}
+
+.hotel-stars {
+    display: flex;
+    gap: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+.hotel-stars i {
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+.hotel-preview-content h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.hotel-preview-content p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.hotel-price-preview {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.price-from {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+}
+
+.price-amount {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.price-unit {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+/* Events Preview */
+.events-preview-section {
+    background: white;
+}
+
+.events-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.event-preview-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 1.5rem;
+    transition: var(--transition);
+}
+
+.event-preview-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.event-date-badge {
+    background: var(--primary);
+    color: white;
+    padding: 1rem;
+    border-radius: 15px;
+    text-align: center;
+    min-width: 70px;
+}
+
+.event-day {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.event-month {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+.event-preview-content {
+    flex: 1;
+}
+
+.event-category {
+    display: inline-block;
+    background: var(--light);
+    color: var(--primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.event-preview-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.event-preview-content p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.event-preview-content i {
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+/* CTA Section New */
+.cta-section-new {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    padding: 6rem 0;
+}
+
+.cta-content-new {
+    text-align: center;
+    color: white;
+}
+
+.cta-content-new h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.cta-content-new p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .quick-links-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gastro-preview-grid,
+    .hotels-preview-grid,
+    .events-preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .top-bar-left,
+    .top-bar-right {
+        gap: 1rem;
+    }
+
+    .nav-links-new {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: 0.3s ease;
+        padding: 2rem;
+    }
+
+    .nav-links-new.active {
+        right: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .hero-content-new h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 1rem;
+    }
+
+    .search-input-group {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 1rem;
+    }
+
+    .search-input-group:last-of-type {
+        border-bottom: none;
+    }
+
+    .search-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .quick-links-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 300px;
+    }
+
+    .featured-card.large-card {
+        grid-row: span 1;
+    }
+
+    .gastro-preview-grid,
+    .hotels-preview-grid,
+    .events-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header-new h2 {
+        font-size: 2rem;
+    }
+
+    .cta-content-new h2 {
+        font-size: 2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+/* ===== MEJORAS PARA IMÁGENES DE PORTADA ===== */
+
+/* Hero Section - Aumentar altura a pantalla completa */
+.hero-new {
+    height: 100vh !important;
+    /* Cambio de 90vh a 100vh */
+}
+
+/* Featured Grid - Aumentar altura de las tarjetas */
+.featured-grid {
+    grid-auto-rows: 500px !important;
+    /* Cambio de 400px a 500px */
+}
+
+/* Mejorar el tamaño de las imágenes en las tarjetas destacadas */
+.featured-card img {
+    transform: scale(1.05);
+    /* Hacer las imágenes ligeramente más grandes */
+}
+
+.featured-card:hover img {
+    transform: scale(1.15);
+    /* Aumentar el efecto hover */
+}
+
+/* Mejorar el overlay para mejor legibilidad */
+.featured-overlay {
+    padding: 2.5rem;
+    /* Aumentar padding */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.3));
+}
+
+/* Aumentar el tamaño del título en las tarjetas destacadas */
+.featured-overlay h3 {
+    font-size: 2rem !important;
+    /* Aumentar de 1.8rem a 2rem */
+    margin-bottom: 0.8rem;
+}
+
+/* Mejorar la tipografía del hero */
+.hero-content-new h1 {
+    font-size: 5rem !important;
+    /* Aumentar de 4.5rem a 5rem */
+}
+
+/* Responsive - Mantener buen aspecto en móviles */
+@media (max-width: 768px) {
+    .hero-new {
+        height: 100vh !important;
+    }
+
+    .hero-content-new h1 {
+        font-size: 3.5rem !important;
+    }
+
+    .featured-grid {
+        grid-auto-rows: 400px !important;
+    }
+
+    .featured-overlay h3 {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* ===== MEJORAS PARA ELIMINAR ESPACIOS EN BLANCO EN HEADERS ===== */
+
+/* Aumentar altura de page-headers y mejorar cobertura de imagen */
+.page-header {
+    height: 80vh !important;
+    /* Aumentar de 60vh a 80vh */
+    margin-top: 0 !important;
+    /* Eliminar margen superior */
+    padding-top: 80px;
+    /* Agregar padding para compensar navbar */
+}
+
+/* Mejorar la configuración de las imágenes de fondo */
+.page-header::before {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    transform: scale(1.1) !important;
+    /* Escalar ligeramente para eliminar espacios */
+    width: 110% !important;
+    /* Hacer la imagen más ancha */
+    height: 110% !important;
+    /* Hacer la imagen más alta */
+    left: -5% !important;
+    /* Centrar la imagen escalada */
+    top: -5% !important;
+    /* Centrar la imagen escalada */
+}
+
+/* Ajustar el hover para mantener la cobertura */
+.page-header:hover::before {
+    transform: scale(1.2) !important;
+}
+
+/* Mejorar la animación de zoom */
+@keyframes slowZoom {
+    0% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1.25);
+    }
+}
+
+/* Asegurar que el overlay cubra completamente */
+.page-header .overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) !important;
+    z-index: 1 !important;
+}
+
+/* Mejorar tipografía en headers */
+.page-header h1 {
+    font-size: 5rem !important;
+    /* Aumentar tamaño */
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+    /* Mejor sombra */
+    margin-bottom: 1.5rem !important;
+}
+
+.page-header p {
+    font-size: 1.8rem !important;
+    /* Aumentar tamaño */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+    /* Mejor sombra */
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .page-header {
+        height: 70vh !important;
+        padding-top: 60px !important;
+    }
+
+    .page-header h1 {
+        font-size: 3rem !important;
+    }
+
+    .page-header p {
+        font-size: 1.3rem !important;
+    }
+
+    .page-header::before {
+        transform: scale(1.2) !important;
+        width: 120% !important;
+        height: 120% !important;
+        left: -10% !important;
+        top: -10% !important;
+    }
+}
+
+/* Específico para eventos header que se ve en la imagen */
+.eventos-header::before {
+    background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2670&auto=format&fit=crop') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* Asegurar que no haya espacios en ninguna página */
+.gastro-header::before,
+.cultura-header::before,
+.eventos-header::before,
+.contacto-header::before,
+.hoteles-header::before,
+.destinos-header::before,
+.servicios-header::before,
+.guia-comercial-header::before,
+.frontera-header::before {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transform: scale(1.1) !important;
+    width: 110% !important;
+    height: 110% !important;
+    left: -5% !important;
+    top: -5% !important;
+}
+
+/* Agregar imagen de fondo para frontera-header */
+.frontera-header::before {
+    background-image: url('https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?q=80&w=2670&auto=format&fit=crop') !important;
+}
+
+/* ===== CORRECCIÓN DE VISIBILIDAD EN REQUISITOS DE VIAJE ===== */
+
+/* Corregir colores de texto en requisito-card */
+.requisito-card h3 {
+    color: var(--secondary) !important;
+    /* Cambiar de white a color oscuro */
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.requisito-card ul {
+    list-style: none;
+    padding: 0;
+    color: var(--text) !important;
+    /* Asegurar color de texto visible */
+}
+
+.requisito-card li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    color: var(--text) !important;
+    /* Color de texto oscuro para visibilidad */
+}
+
+.requisito-card li strong {
+    color: var(--primary) !important;
+    /* Color primario para texto en negrita */
+    font-weight: 600;
+}
+
+/* Mejorar el contraste general de las tarjetas */
+.requisito-card {
+    background: white !important;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Agregar borde sutil */
+}
+
+/* Asegurar que todos los elementos de texto sean visibles */
+.requisito-card p {
+    color: var(--text) !important;
+}
+
+/* Mejorar el ícono para mejor contraste */
+.requisito-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(218, 41, 28, 0.15) !important;
+    /* Fondo más visible */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.requisito-icon i {
+    font-size: 2rem;
+    color: var(--primary) !important;
+}
+
+/* También corregir otros elementos similares que puedan tener el mismo problema */
+.dark-bg .requisito-card h3,
+.dark-bg .requisito-card li,
+.dark-bg .requisito-card p {
+    color: var(--text) !important;
+}
+
+.dark-bg .requisito-card {
+    background: white !important;
+}
+
+/* ===== CORRECCIÓN DE VISIBILIDAD EN INFORMACIÓN ADICIONAL ===== */
+
+/* Corregir colores de texto en info-adicional-card */
+.info-adicional-card h3 {
+    color: var(--secondary) !important;
+    /* Cambiar de white a color oscuro */
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.info-adicional-card p {
+    color: var(--text) !important;
+    /* Asegurar color de texto visible */
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.info-adicional-card strong {
+    color: var(--primary) !important;
+    /* Color primario para texto en negrita */
+}
+
+/* Mejorar el contraste de las tarjetas de información adicional */
+.info-adicional-card {
+    background: white !important;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Agregar borde sutil */
+}
+
+.info-adicional-card i {
+    color: var(--primary) !important;
+}
+
+/* Asegurar que los enlaces sean visibles */
+.info-adicional-card .btn-link {
+    color: var(--primary) !important;
+    font-weight: 600;
+}
+
+.info-adicional-card .btn-link:hover {
+    color: var(--primary-dark) !important;
+}
+
+/* También corregir en contexto dark-bg */
+.dark-bg .info-adicional-card h3,
+.dark-bg .info-adicional-card p {
+    color: var(--text) !important;
+}
+
+.dark-bg .info-adicional-card {
+    background: white !important;
+}
+
+/* ===== MEJORAS GENERALES DE VISIBILIDAD PARA PÁGINA FRONTERA ===== */
+
+/* Asegurar visibilidad en todas las tarjetas de consejos */
+.consejo-card h3 {
+    color: var(--secondary) !important;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.consejo-card p {
+    color: var(--text) !important;
+    line-height: 1.6;
+}
+
+/* Mejorar visibilidad en proceso-step */
+.proceso-step .step-content h3 {
+    color: var(--secondary) !important;
+    margin-bottom: 0.8rem;
+}
+
+.proceso-step .step-content p {
+    color: var(--text) !important;
+    line-height: 1.6;
+}
+
+/* Mejorar las estadísticas de frontera */
+.frontera-stats .stat-card h3 {
+    color: var(--secondary) !important;
+}
+
+.frontera-stats .stat-card p {
+    color: var(--text-light) !important;
+}
+
+/* Asegurar visibilidad en FAQ */
+.faq-frontera .faq-item h3 {
+    color: var(--secondary) !important;
+}
+
+.faq-frontera .faq-item p {
+    color: var(--text) !important;
+}
+
+/* Mejorar contraste general en secciones dark-bg */
+.dark-bg .section-title {
+    color: white !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Asegurar que todos los elementos de texto en tarjetas blancas sean visibles */
+.requisito-card *,
+.consejo-card *,
+.info-adicional-card *,
+.faq-item * {
+    color: inherit;
+}
+
+.requisito-card,
+.consejo-card,
+.info-adicional-card,
+.faq-item {
+    color: var(--text) !important;
+}
+
+/* ===== AJUSTE PARA 4 TARJETAS EN DESTINOS DESTACADOS ===== */
+
+/* Modificar la grid para acomodar 4 tarjetas */
+.featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr !important;
+    /* Ajustar para 4 columnas */
+    gap: 2rem;
+    grid-auto-rows: 500px !important;
+}
+
+/* La tarjeta grande sigue ocupando 2 filas */
+.featured-card.large-card {
+    grid-row: span 2 !important;
+}
+
+/* Responsive para móviles - mantener diseño funcional */
+@media (max-width: 1024px) {
+    .featured-grid {
+        grid-template-columns: 1fr 1fr !important;
+        /* 2 columnas en tablets */
+        grid-auto-rows: 400px !important;
+    }
+
+    .featured-card.large-card {
+        grid-row: span 1 !important;
+        /* En tablets, la tarjeta grande no ocupa 2 filas */
+        grid-column: span 2 !important;
+        /* Pero sí ocupa 2 columnas */
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-grid {
+        grid-template-columns: 1fr !important;
+        /* 1 columna en móviles */
+        grid-auto-rows: 350px !important;
+    }
+
+    .featured-card.large-card {
+        grid-row: span 1 !important;
+        grid-column: span 1 !important;
+    }
+}
+
+/* ===== CONFIGURACIÓN MEJORADA PARA 4 TARJETAS SIN ESPACIOS ===== */
+
+/* Reconfigurar completamente el grid para 4 tarjetas */
+.featured-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    /* 2 columnas principales */
+    grid-template-rows: 1fr 1fr !important;
+    /* 2 filas */
+    gap: 2rem !important;
+    grid-auto-rows: unset !important;
+    height: 600px !important;
+    /* Altura fija para eliminar espacios */
+}
+
+/* Cristo Rey ocupa la primera columna completa (2 filas) */
+.featured-card.large-card {
+    grid-column: 1 !important;
+    grid-row: 1 / 3 !important;
+    /* Ocupa ambas filas */
+}
+
+/* Las otras 3 tarjetas se distribuyen en la segunda columna */
+.featured-card:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+}
+
+.featured-card:nth-child(3) {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+}
+
+.featured-card:nth-child(4) {
+    grid-column: 2 !important;
+    grid-row: 1 / 3 !important;
+    /* Esta tarjeta también puede ocupar ambas filas */
+}
+
+/* Alternativa: distribuir las 3 tarjetas pequeñas en subceldas */
+.featured-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr !important;
+    /* 3 columnas: grande, pequeña, pequeña */
+    grid-template-rows: 1fr 1fr !important;
+    /* 2 filas */
+    gap: 2rem !important;
+    height: 600px !important;
+}
+
+.featured-card.large-card {
+    grid-column: 1 !important;
+    grid-row: 1 / 3 !important;
+    /* Ocupa ambas filas de la primera columna */
+}
+
+.featured-card:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+}
+
+.featured-card:nth-child(3) {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+}
+
+.featured-card:nth-child(4) {
+    grid-column: 2 / 4 !important;
+    /* Ocupa las columnas 2 y 3 */
+    grid-row: 2 !important;
+}
+
+/* Asegurar que todas las imágenes cubran completamente su contenedor */
+.featured-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Responsive mejorado */
+@media (max-width: 1024px) {
+    .featured-grid {
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: auto auto !important;
+        height: auto !important;
+    }
+
+    .featured-card.large-card {
+        grid-column: 1 / 3 !important;
+        /* Ocupa ambas columnas */
+        grid-row: 1 !important;
+        height: 400px !important;
+    }
+
+    .featured-card:nth-child(2) {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+    }
+
+    .featured-card:nth-child(3) {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+    }
+
+    .featured-card:nth-child(4) {
+        grid-column: 1 / 3 !important;
+        grid-row: 3 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(4, auto) !important;
+        height: auto !important;
+    }
+
+    .featured-card.large-card,
+    .featured-card:nth-child(2),
+    .featured-card:nth-child(3),
+    .featured-card:nth-child(4) {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        height: 300px !important;
+    }
+}
+
+/* ===== CONFIGURACIÓN FINAL LIMPIA PARA 4 TARJETAS ===== */
+
+/* Sobrescribir completamente el grid anterior */
+.featured-section .featured-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr !important;
+    grid-template-rows: 1fr 1fr !important;
+    gap: 2rem !important;
+    height: 600px !important;
+    width: 100% !important;
+}
+
+/* Cristo Rey - tarjeta grande (primera columna, ambas filas) */
+.featured-section .featured-card.large-card {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 3 !important;
+}
+
+/* El Malecón - segunda columna, primera fila */
+.featured-section .featured-card:nth-child(2) {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+}
+
+/* Templo Histórico - tercera columna, primera fila */
+.featured-section .featured-card:nth-child(3) {
+    grid-column: 3 / 4 !important;
+    grid-row: 1 / 2 !important;
+}
+
+/* Parque Santander - segunda y tercera columna, segunda fila */
+.featured-section .featured-card:nth-child(4) {
+    grid-column: 2 / 4 !important;
+    grid-row: 2 / 3 !important;
+}
+
+/* Asegurar que no haya espacios vacíos */
+.featured-section .featured-card {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.featured-section .featured-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Responsive específico para esta sección */
+@media (max-width: 1200px) {
+    .featured-section .featured-grid {
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: auto auto auto !important;
+        height: auto !important;
+    }
+
+    .featured-section .featured-card.large-card {
+        grid-column: 1 / 3 !important;
+        grid-row: 1 !important;
+        height: 400px !important;
+    }
+
+    .featured-section .featured-card:nth-child(2) {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        height: 300px !important;
+    }
+
+    .featured-section .featured-card:nth-child(3) {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        height: 300px !important;
+    }
+
+    .featured-section .featured-card:nth-child(4) {
+        grid-column: 1 / 3 !important;
+        grid-row: 3 !important;
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-section .featured-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(4, auto) !important;
+    }
+
+    .featured-section .featured-card.large-card,
+    .featured-section .featured-card:nth-child(2),
+    .featured-section .featured-card:nth-child(3),
+    .featured-section .featured-card:nth-child(4) {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        height: 280px !important;
+    }
+}
+
+/* ===== ESTILOS PARA EL NUEVO LOGO EN IMAGEN ===== */
+
+/* Contenedor del logo */
+.logo-new {
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    padding: 1rem 1.7rem !important;
+}
+
+/* Imagen del logo */
+.logo-image {
+    height: 85px !important;
+    width: auto !important;
+    max-width: 260px !important;
+    object-fit: contain !important;
+    transition: var(--transition) !important;
+}
+
+/* Efecto hover en el logo - solo opacity, no scale para evitar romper el contenedor */
+.logo-new:hover .logo-image {
+    opacity: 0.9 !important;
+    transform: none !important;
+    /* Remove scale transform */
+}
+
+/* Responsive para el logo */
+@media (max-width: 768px) {
+    .logo-image {
+        height: 65px !important;
+        max-width: 200px !important;
+    }
+
+    .logo-new {
+        padding: 0.8rem 1.2rem !important;
+        border-width: 2px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-image {
+        height: 50px !important;
+        max-width: 160px !important;
+    }
+}
+
+/* Asegurar que el navbar tenga el espacio adecuado */
+.nav-container-new {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 !important;
+}
+
+/* Si no existe el archivo logo.png, mostrar un placeholder */
+.logo-image[src*="logo.png"] {
+    background-color: var(--light) !important;
+    border: 2px dashed var(--primary) !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+    position: relative !important;
+}
+
+/* Placeholder text cuando no hay imagen */
+.logo-image[src*="logo.png"]:after {
+    content: "LOGO AQUÍ" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+}
+
+/* Ocultar el placeholder cuando la imagen se carga correctamente */
+.logo-image:not([src*="logo.png"]):after {
+    display: none !important;
+}
