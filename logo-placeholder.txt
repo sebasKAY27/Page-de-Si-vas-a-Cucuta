@@ -1,0 +1,10 @@
+INSTRUCCIONES PARA EL LOGO:
+
+1. Coloca tu logo en formato PNG en esta carpeta con el nombre "logo.png"
+2. Tamaño recomendado: 200px de ancho x 50px de alto (o proporcional)
+3. Fondo transparente preferible
+4. Formato PNG para mejor calidad
+
+El logo aparecerá automáticamente en el menú de navegación de todas las páginas.
+
+Ubicación del archivo: IMAGENES/logo.png
